@@ -9,7 +9,7 @@ The Go community has plenty resources to read about go's concurrency model and h
 ## How to take this challenge
 1. *Only edit `main.go`* to solve the problem. Do not touch any of the other files.
 2. If you find a `*_test.go` file, you can test the correctness of your solution with `go test`
-3. If you get stuck, join us on [Slack](https://gophersinvite.herokuapp.com/)! I'm sure there will be people who are happy to give you some code review (if not, find me via @beertocode ;) )
+3. If you get stuck, join us on [Discord](https://discord.com/invite/golang) or [Slack](https://invite.slack.golangbridge.org/)! Surely there are people who are happy to give you some code reviews (if not, find me via `@loong` ;) )
 
 ## Overview
 | # | Name of the Challenge + URL           | 
