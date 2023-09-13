@@ -15,7 +15,7 @@ import (
 )
 
 func TestMain(t *testing.T) {
-	cache := run(assert.New(t))
+	cache, db := run(assert.New(t))
 
 	cacheLen := len(cache.cache)
 	pagesLen := cache.pages.Len()
@@ -24,6 +24,9 @@ func TestMain(t *testing.T) {
 	}
 	if pagesLen != CacheSize {
 		t.Errorf("Incorrect pages size %v", pagesLen)
+	}
+	if db.Calls > callsPerCycle {
+		t.Errorf("Too much db uses %v", db.Calls)
 	}
 }
 

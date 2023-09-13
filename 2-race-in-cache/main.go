@@ -79,7 +79,7 @@ func (l *Loader) Load(key string) string {
 	return val
 }
 
-func run(as *assert.Assertions) *KeyStoreCache {
+func run(as *assert.Assertions) (*KeyStoreCache, *MockDB) {
 	loader := Loader{
 		DB: GetMockDB(),
 	}
@@ -87,7 +87,7 @@ func run(as *assert.Assertions) *KeyStoreCache {
 
 	RunMockServer(cache, as)
 
-	return cache
+	return cache, loader.DB
 }
 
 func main() {
