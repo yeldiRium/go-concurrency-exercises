@@ -8,7 +8,11 @@
 
 package main
 
-import "container/list"
+import (
+	"container/list"
+
+	"github.com/stretchr/testify/assert"
+)
 
 // CacheSize determines how big the cache can grow
 const CacheSize = 100
@@ -75,17 +79,17 @@ func (l *Loader) Load(key string) string {
 	return val
 }
 
-func run() *KeyStoreCache {
+func run(as *assert.Assertions) *KeyStoreCache {
 	loader := Loader{
 		DB: GetMockDB(),
 	}
 	cache := New(&loader)
 
-	RunMockServer(cache)
+	RunMockServer(cache, as)
 
 	return cache
 }
 
 func main() {
-	run()
+	run(nil)
 }

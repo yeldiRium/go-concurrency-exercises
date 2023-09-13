@@ -8,11 +8,14 @@ package main
 
 import (
 	"strconv"
+	"sync"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestMain(t *testing.T) {
-	cache := run()
+	cache := run(assert.New(t))
 
 	cacheLen := len(cache.cache)
 	pagesLen := cache.pages.Len()
@@ -30,9 +33,16 @@ func TestLRU(t *testing.T) {
 	}
 	cache := New(&loader)
 
+	var wg sync.WaitGroup
 	for i := 0; i < 100; i++ {
-		cache.Get("Test" + strconv.Itoa(i))
+		wg.Add(1)
+		go func(i int) {
+			value := cache.Get("Test" + strconv.Itoa(i))
+			assert.Equal(t, "Test" + strconv.Itoa(i), value)
+			wg.Done()
+		}(i)
 	}
+	wg.Wait()
 
 	if len(cache.cache) != 100 {
 		t.Errorf("cache not 100: %d", len(cache.cache))
