@@ -10,12 +10,10 @@ import (
 	"strconv"
 	"sync"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestMain(t *testing.T) {
-	cache, db := run(assert.New(t))
+	cache, db := run(t)
 
 	cacheLen := len(cache.cache)
 	pagesLen := cache.pages.Len()
@@ -41,7 +39,9 @@ func TestLRU(t *testing.T) {
 		wg.Add(1)
 		go func(i int) {
 			value := cache.Get("Test" + strconv.Itoa(i))
-			assert.Equal(t, "Test" + strconv.Itoa(i), value)
+			if value != "Test" + strconv.Itoa(i) {
+				t.Errorf("Incorrect db response %v", value)
+			}
 			wg.Done()
 		}(i)
 	}
