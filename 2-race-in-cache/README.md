@@ -8,7 +8,7 @@ Also, try to get your solution down to less than 30 seconds to run tests.  *Hint
 
 *Note*: Map access is unsafe only when updates are occurring. As long as all goroutines are only reading and not changing the map, it is safe to access the map concurrently without synchronization. (See [https://golang.org/doc/faq#atomic_maps](https://golang.org/doc/faq#atomic_maps))
 
-Advanced Level: Get your solution down to less than 5 seconds for all tests.
+If possible, get your solution down to less than 5 seconds for all tests.
 
 ## Background Reading
 
