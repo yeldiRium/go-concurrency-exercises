@@ -37,7 +37,6 @@ func Crawl(url string, depth int, wg *sync.WaitGroup) {
 		// called concurrently
 		go Crawl(u, depth-1, wg)
 	}
-	return
 }
 
 func main() {
